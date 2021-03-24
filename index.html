@@ -14,14 +14,19 @@
         <h1>Music</h1>
         <div class="container">    
             <div class="search-box">
-                <input type="text" class="search" placeholder="Search artist or song..."/>
-                <button class="search-btn" type="submit">
+                <input type="text" class="search" id="search" placeholder="Search artist or song..."/>
+                <button class="search-btn" id="searchBtn" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
             <section class="columns">
                 <div class="column">
+                    <p id="notifications">
+                        <span> </span>
+                    </p>
+                    <hr/>
                     <div class="results">
+                        
                         <p>Results will be displayed here</p>
                     </div>
                 </div>
@@ -38,6 +43,6 @@
                 Created by<a href="mailto:piero.sa@icloud.com"> Piero Sabino</a>&copy;
             </footer>
         </div>
-       
+       <script src="app.js"></script>
     </body>
 </html>

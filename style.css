@@ -1,5 +1,5 @@
 body{
-   background-image:url(img/music.jpeg.crdownload);
+   background-image:url(img/music.jpeg);
    background-size: cover;
    background-repeat: no-repeat;
 }
@@ -80,8 +80,14 @@ display: flex;
     margin-right: 5px;
 }
 
+#notifications{
+    font-size: 25px;
+    color: #f01;
+    font-family: 'Pacifico',serif;
+}
 
 .results{
+    top: 20%;
     background: #fff;
     height: auto;
     font-family: 'Pacifico', serif;
@@ -91,15 +97,16 @@ display: flex;
 }
 
 .favorite{
-    border-radius: 15px;
+    top: 20%;
+    background: #fff;
+    font-family: 'Pacifico', serif;
+    font-size:25px;
+    color:#f11;
+    border-radius: 20px;
     padding-left: 8px;
 }
 .favorite p{
     text-align: center;
-    background: #fff;
-    font-family: 'Pacifico', serif;
-    font-size:30px;
-    color:#f11;
 }
 
 .clear-all{
