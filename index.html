@@ -11,21 +11,26 @@
               <title>Favorite songs</title>
     </head>
     <body>
-        <h1>Music</h1>
-        <div class="container">    
-            <div class="search-box">
-                <input type="text" class="search" id="search" placeholder="Search artist or song..."/>
-                <button class="search-btn" id="searchBtn" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            
+    
+        <h1>Search music</h1>
+            <div class="container"> 
+            </header>
+                <form id="form">   
+                    <div class="search-box">
+                        <input type="text" class="search" id="search" placeholder="Search artist or song..."/>
+                        <button class="search-btn" id="searchBtn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <p id="notifications"></p>
+            </header> 
             <hr/>
             <section class="columns">
                 <div class="column">
-                    <p id="notifications"></p>
-                    <div class="results">
-                        <p>Results will be displayed here</p>
+                    
+                    <div class="results" id="results">
+                        <p></p>
                     </div>
                 </div>
                 <div class="column">
@@ -37,7 +42,7 @@
                     </div>
                 </div>
             </section>
-        </div>
+        
        <script src="js/apps.js"></script>
     </body>
 </html>
