@@ -2,7 +2,7 @@
 
 
 header{
-    background: url('img/music.jpg');
+    background: url('img/music.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     color:  #fff;
@@ -31,25 +31,26 @@ header *{
 
 
 h1{
-    top: 0;
+   
     font-size:70px;
     text-align: center;
     color:blue;
     font-family: 'Pacifico',serif;
+    text-shadow: 2px 2px #fff;
 }
 
 
 
 .search-box{
     top: 15%;
-    left: 40%;
-    width: 20%;
+    left: 8%;
+    width: 100%;
     position: relative;
     display: flex;
 }
 
 .search{
-    width: 85%;
+    width: 100%;
     border: 3px solid #001;
     border-right: none;
     border-radius: 5px 0 0 5px;
@@ -104,9 +105,12 @@ display: flex;
 
 
 #notifications{
+    left:10%;
     font-size: 28px;
     color: #f01;
     font-family: 'Pacifico',serif;
+    background: #fff;
+    border-radius: 10px;
 }
 
 .results{
