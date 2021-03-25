@@ -1,3 +1,4 @@
+
 body{
    background-image:url(img/music.jpeg);
    background-size: cover;
@@ -80,6 +81,8 @@ display: flex;
     margin-right: 5px;
 }
 
+
+
 #notifications{
     font-size: 25px;
     color: #f01;
@@ -91,9 +94,21 @@ display: flex;
     background: #fff;
     height: auto;
     font-family: 'Pacifico', serif;
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 15px;
     padding-left: 8px;
+}
+
+ul.songs{
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.songs li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
 }
 
 .favorite{
@@ -126,20 +141,4 @@ display: flex;
 }
 
 
-
-footer{
-   font-family: 'Pacifico',serif;
-    font-size: 25px;
-    color:#f01;
-    top:50%;
-}
-
-footer a{
-    text-decoration: none;
-}
-
-footer a:hover{
-    color:#f01;
-    text-decoration: none;
-}
 
