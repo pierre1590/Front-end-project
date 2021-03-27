@@ -4,9 +4,21 @@ const btnSearch = document.getElementById('searchBtn');
 const result = document.getElementById('results');
 const form = document.getElementById('form');
 const notes = document.getElementById('notifications');
-const clear = document.getElementById('reset');
+const star = document.querySelector('.star');
+const favorite = document.querySelector('.favorite');
+// OPEN AND CLOSE FAVORITE LIST
+star.addEventListener('click', () => {
+   favorite.classList.toggle('favorite-view');
+})
+
+
+
+
+
 // API URL
 const apiURL = 'https://api.lyrics.ovh';
+
+
 
 // ADD EVENT LISTENER
 
@@ -20,7 +32,6 @@ form.addEventListener('submit', e => {
   else {
     searchSong(searchValue);
   }
-
   
 })
 
@@ -40,7 +51,6 @@ async function searchSong(searchValue){
   showData(data);
 
 }
-
 
 
 // DISPLAY FINAL RESULT
@@ -73,7 +83,6 @@ function showData(data){
     more.innerHTML = '';
   }
 
-  
 }
 
 
@@ -81,10 +90,12 @@ function showData(data){
 
 //MORE SONGS
 async function getMoreSongs(url){
+  
   const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
   const data = await res.json();
   result.innerHTML = '';
   showData(data);
+ 
 }
 
 //EVENT LISTENER TO GET LYRICS

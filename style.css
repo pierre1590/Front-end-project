@@ -118,7 +118,7 @@ h1{
     width: 500px;
     margin: 30px auto;
     font-family: 'Pacifico', serif;
-    font-size: 18px;
+    font-size: 20px;
     border-radius: 10px;
     padding-left: 8px;
     color:#11f;
@@ -146,14 +146,14 @@ ul.song-list li {
 
 
 #notifications{
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     font-family: 'Pacifico', serif;
     color: rgb(21, 156, 43);
     background-color: lightgreen;
     width: 400px;
     border-radius: 15px;
-    left: 43%;
+    left: 42%;
     position: relative;
 }
 
@@ -195,12 +195,12 @@ ul.song-list li {
 
 .star{
     position: fixed;
-    top:45%;
+    top:44%;
     left:99%;
     font-size:20px;
-    height: 20px;
-    width: 20px;
-    padding:2px;
+    height: 25px;
+    width: 25px;
+    padding: 0;
     text-align: center;
     background-color: #ff1;
     outline: none;
@@ -211,15 +211,29 @@ ul.song-list li {
 }
 
 .favorite{
-    top: 20%;
+    top: 51%;
     background: #fff;
     font-family: 'Pacifico', serif;
     font-size:25px;
     color:#f11;
-    border-radius: 20px;
+    padding:0;
+    border-radius: 0% 0% 100% 50%;
     padding-left: 8px;
-    visibility: hidden;
+    width:100%;
+    position: relative;
+    transform: translateX(100%);
+    overflow: hidden;
+    transition: all 800ms cubic-bezier(.8, 0, .33, 1);
+    
 }
+
+.favorite-view{
+    transform: translateX(0px);
+    border-radius: 0% 0% 0% 0%;
+	background: #fff;
+}
+
+
 .favorite p{
     text-align: center;
 }
