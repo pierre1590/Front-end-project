@@ -57,6 +57,7 @@ function showData(data){
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
                   <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+                  
               </li>`
       )
       .join('')}
@@ -71,7 +72,12 @@ function showData(data){
   } else {
     more.innerHTML = '';
   }
+
+  
 }
+
+
+
 
 //MORE SONGS
 async function getMoreSongs(url){
@@ -81,11 +87,11 @@ async function getMoreSongs(url){
   showData(data);
 }
 
-//event listener in get lyrics button
+//EVENT LISTENER TO GET LYRICS
 result.addEventListener('click', e=>{
     const clickedElement = e.target;
 
-    //checking clicked elemet is button or not
+    //CHECKING CLICKED ELEMENT IS BUTTON OR NOT
     if (clickedElement.tagName === 'BUTTON'){
         const artist = clickedElement.getAttribute('data-artist');
         const songTitle = clickedElement.getAttribute('data-songtitle');
@@ -101,14 +107,17 @@ async function getLyrics(artist, songTitle) {
 
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
-  results.innerHTML = `<button class="back"><i class="fas fa-arrow-circle-left "></i></button>
+  results.innerHTML = `
                        <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
           <h2><strong>${artist}</strong> - ${songTitle}</h2>
           <p>${lyrics}</p>`;
+
+
+         
 }
 
-
- function addToList(){
+//ADD SONG TO FAVOURITE LIST
+ function addToList(artist,songTitle){
   notes.innerHTML = ("Song successfully added to favorite list");
 }
 
