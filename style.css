@@ -114,6 +114,7 @@ h1{
 
 
 .results{
+   
     max-width:100%;
     width: 500px;
     margin: 30px auto;
@@ -195,11 +196,11 @@ ul.song-list li {
 
 .star{
     position: fixed;
-    top:44%;
-    left:99%;
-    font-size:20px;
-    height: 25px;
-    width: 25px;
+    top:48%;
+    left:1%;
+    font-size:25px;
+    height: 35px;
+    width: 35px;
     padding: 0;
     text-align: center;
     background-color: #ff1;
@@ -214,29 +215,32 @@ ul.song-list li {
     top: 51%;
     background: #fff;
     font-family: 'Pacifico', serif;
-    font-size:25px;
+    font-size:35px;
     color:#f11;
-    padding:0;
+    padding:2px;
     border-radius: 0% 0% 100% 50%;
     padding-left: 8px;
     width:100%;
-    position: relative;
-    transform: translateX(100%);
+    height: 700px;
+    position: absolute;
+    transform: translateX(-102%);
     overflow: hidden;
     transition: all 800ms cubic-bezier(.8, 0, .33, 1);
-    
-}
+}   
 
 .favorite-view{
-    transform: translateX(0px);
+    transform: translateX(0%);
     border-radius: 0% 0% 0% 0%;
-	background: #fff;
+	background: #fff ;
+    
 }
 
 
 .favorite p{
     text-align: center;
 }
+
+
 
 .clear-all{
     
@@ -254,5 +258,69 @@ ul.song-list li {
     box-shadow: 3px 3px 5px #f11;
 }
 
+.delete-items{
+   
+    margin-left: 43%;
+    width: 350px;
+    font-size: 30px;
+    font-family: 'Pacifico',serif;
+    color: #017;
+    text-align: center;
+    padding: 5px;
+    
+    
+}
 
+footer{
+    position: absolute;
+    top:auto;
+    left:45%;
+}
 
+footer p{
+    padding-top: 40px;
+    width: 310px;
+    height: 80px;
+    color: #f04;
+    font-size: 21px;
+    font-weight: bolder;
+    background-color: #1ff;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.heart{
+    height: 15px;
+    width: 15px;
+    background-color: #f11;
+}
+
+.github{
+    padding: 10px;
+    width: 20px;
+    height: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.linkedin{
+    padding: 10px;
+    width: 20px;
+    height: 15px;
+    color: white;
+    background-color: #03a;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.instagram{
+    padding: 10px;
+    width: 20px;
+    height: 15px;
+    color: white;
+    background: radial-gradient(1.5em circle at  bottom , yellow , rgb(114, 0, 180));
+    border-radius: 25%;
+    cursor: pointer;
+}

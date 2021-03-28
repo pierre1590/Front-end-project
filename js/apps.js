@@ -6,13 +6,15 @@ const form = document.getElementById('form');
 const notes = document.getElementById('notifications');
 const star = document.querySelector('.star');
 const favorite = document.querySelector('.favorite');
+const removeAll = document.querySelector('.clear-all');
+const deleteItems = document.querySelector('.delete-items span');
+
+
+
 // OPEN AND CLOSE FAVORITE LIST
 star.addEventListener('click', () => {
    favorite.classList.toggle('favorite-view');
 })
-
-
-
 
 
 // API URL
@@ -128,7 +130,16 @@ async function getLyrics(artist, songTitle) {
 }
 
 //ADD SONG TO FAVOURITE LIST
- function addToList(artist,songTitle){
+function addToList(artist,songTitle)  {
   notes.innerHTML = ("Song successfully added to favorite list");
 }
 
+// REMOVE ALL ITEMS FROM LIST
+removeAll.addEventListener('click', () => {
+ let msg = confirm("Are you sure to delete all items?");
+ if (msg = "ok"){
+   localStorage.clear();
+   let items = ("All items have been deleted.");
+   deleteItems.innerHTML = items;
+ }  
+})
