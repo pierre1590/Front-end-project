@@ -220,17 +220,17 @@ ul.song-list li {
     padding:2px;
     border-radius: 0% 0% 100% 50%;
     padding-left: 8px;
-    width:100%;
+    width:45%;
     height: 700px;
     position: absolute;
-    transform: translateX(-102%);
+    transform: translateX(-100%);
     overflow: hidden;
     transition: all 800ms cubic-bezier(.8, 0, .33, 1);
 }   
 
 .favorite-view{
-    transform: translateX(0%);
-    border-radius: 0% 0% 0% 0%;
+    transform: translateX(0);
+    border-radius: 0% 5% 5% 0%;
 	background: #fff ;
     
 }
@@ -274,7 +274,7 @@ ul.song-list li {
 footer{
     position: absolute;
     top:auto;
-    left:45%;
+    left:44%;
 }
 
 footer p{
