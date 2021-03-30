@@ -152,10 +152,12 @@ ul.song-list li {
     font-family: 'Pacifico', serif;
     color: rgb(21, 156, 43);
     background-color: lightgreen;
-    width: 400px;
+    width: 460px;
+    padding-top:3px;
     border-radius: 15px;
     left: 42%;
     position: relative;
+    visibility:hidden ;
 }
 
 .btn{
@@ -197,7 +199,7 @@ ul.song-list li {
 .star{
     position: fixed;
     top:48%;
-    left:1%;
+    left:0.5%;
     font-size:25px;
     height: 35px;
     width: 35px;
@@ -207,7 +209,7 @@ ul.song-list li {
     outline: none;
     border-radius: 20px;
     cursor: pointer;
-    box-shadow: 2px 2px #ff5;
+   
     border-radius: 25px;
 }
 
@@ -223,7 +225,7 @@ ul.song-list li {
     width:45%;
     height: 700px;
     position: absolute;
-    transform: translateX(-100%);
+    transform: translateX(-101%);
     overflow: hidden;
     transition: all 800ms cubic-bezier(.8, 0, .33, 1);
 }   
@@ -240,6 +242,26 @@ ul.song-list li {
     text-align: center;
 }
 
+.fav-list{
+    text-align: center;
+    color: blue;
+    
+}
+
+ul.fav-list{
+    
+    padding: 0;
+}
+
+
+
+ul.fav-list li {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    
+}
 
 
 .clear-all{
@@ -258,6 +280,17 @@ ul.song-list li {
     box-shadow: 3px 3px 5px #f11;
 }
 
+.remove-item{
+    width: 20px;
+    height: 20px;
+    background: #f11;
+    color: #fff;
+    outline: none;
+    border-radius: 25%;
+    cursor: pointer;
+    padding: 1px;
+}
+
 .delete-items{
    
     margin-left: 33%;
@@ -274,19 +307,20 @@ ul.song-list li {
 footer{
     position: absolute;
     top:auto;
-    left:44%;
+    left:42%;
 }
 
 footer p{
-    padding-top: 40px;
-    width: 310px;
+    padding-top: 41px;
+    width: 340px;
     height: 80px;
     color: #f04;
     font-size: 21px;
     font-weight: bolder;
-    background-color: #1ff;
+    background-color: rgb(103, 215, 247);
     text-align: center;
-    border-radius: 50%;
+    border-radius: 5%;
+    box-shadow: 4px 4px 4px  #f04;
 }
 
 .heart{

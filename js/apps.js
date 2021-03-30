@@ -8,6 +8,12 @@ const star = document.querySelector('.star');
 const favorite = document.querySelector('.favorite');
 const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
+const favSongs = document.querySelector('.fav-list');
+const removeItem = document.querySelector('.remove-item');
+
+let searchResults = null;
+let selectedSong = null;
+
 
 
 
@@ -39,7 +45,7 @@ form.addEventListener('submit', e => {
 
 // PRESS ENTER TO SEARCH
 research.addEventListener('keydown', function(e){
-  if(e.keyCode === 13){
+  if(e.key === 13){
     searchSong();
   }
 })
@@ -49,7 +55,7 @@ research.addEventListener('keydown', function(e){
 async function searchSong(searchValue){
   const searchResult = await fetch(`${apiURL}/suggest/${searchValue}`);
   const data = await searchResult.json();
- 
+  searchResults = data;
   showData(data);
 
 }
@@ -59,8 +65,16 @@ async function searchSong(searchValue){
 
 function showData(data){
  
-  notify.innerHTML = ("Searched for:  " +research.value);
+  notify.innerHTML = ("Searched for  " +`"${research.value}"`);
   
+  if (data.data < '0'){ 
+    let message = ("No results for  "  +`"${research.value}"`);
+    notes.style.visibility = "visible";
+    notes.style.backgroundColor = "lightcoral";
+    notes.style.color = "darkred";
+    notes.style.fontSize = "28px";
+    notes.innerHTML = message;
+}else{
   result.innerHTML = `
   <ul class="song-list">
     ${data.data
@@ -68,13 +82,13 @@ function showData(data){
                     <span>
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
-                  <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+                  <button class="btn" data-id="${song.id}" >Get Lyrics</button>
                   
               </li>`
       )
       .join('')}
   </ul>
-`;
+`};
 
   if (data.prev || data.next) {
     more.innerHTML = `
@@ -85,14 +99,32 @@ function showData(data){
     more.innerHTML = '';
   }
 
-}
+ 
+
+  
+  }
 
 
 
 
 //MORE SONGS
 async function getMoreSongs(url){
-  
+  (function() {
+    var cors_api_host = 'cors-anywhere.herokuapp.com';
+    var cors_api_url = 'https://' + cors_api_host + '/';
+    var slice = [].slice;
+    var origin = window.location.protocol + '//' + window.location.host;
+    var open = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function() {
+        var args = slice.call(arguments);
+        var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
+        if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+            targetOrigin[1] !== cors_api_host) {
+            args[1] = cors_api_url + args[1];
+        }
+        return open.apply(this, args);
+    };
+})();
   const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
   const data = await res.json();
   result.innerHTML = '';
@@ -106,12 +138,18 @@ result.addEventListener('click', e=>{
 
     //CHECKING CLICKED ELEMENT IS BUTTON OR NOT
     if (clickedElement.tagName === 'BUTTON'){
-        const artist = clickedElement.getAttribute('data-artist');
-        const songTitle = clickedElement.getAttribute('data-songtitle');
+        const songId = clickedElement.getAttribute("data-id");
+        const song = getSongFromId(songId)
+        selectedSong = song
+        getLyrics(song.artist.name, song.title);
         
-        getLyrics(artist, songTitle)
+       
     }
 })
+
+function getSongFromId(id){
+  return searchResults.data.find((song) => song.id === id);
+}
   
 // GET LYRICS FOR SONG
 async function getLyrics(artist, songTitle) {
@@ -125,21 +163,35 @@ async function getLyrics(artist, songTitle) {
           <h2><strong>${artist}</strong> - ${songTitle}</h2>
           <p>${lyrics}</p>`;
 
+ 
 
-         
 }
 
 //ADD SONG TO FAVOURITE LIST
-function addToList(artist,songTitle)  {
-  notes.innerHTML = ("Song successfully added to favorite list");
+
+
+
+function addToList(artist, songTitle)  {
+ 
+  
+ 
+  notes.style.visibility = "visible";
+  notes.innerHTML = ("Song successfully added to favorite list");                      
 }
+
+// RETRIEVING AUTHOR AND TITLE 
+
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
  let msg = confirm("Are you sure to delete all items?");
  if (msg = "ok"){
-   localStorage.clear();
-   let items = ("All items have been deleted.");
+   localStorage.clear("obj");
+   let items = ("All items have been deleted");
+   favSongs.innerHTML = '';
    deleteItems.innerHTML = items;
  }  
 })
+
+// REMOVE SINGLE ITEM 
+
