@@ -74,7 +74,7 @@ function showData(data){
     notes.style.color = "darkred";
     notes.style.fontSize = "28px";
     notes.innerHTML = message;
-}else{
+}else
   result.innerHTML = `
   <ul class="song-list">
     ${data.data
@@ -82,13 +82,13 @@ function showData(data){
                     <span>
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
-                  <button class="btn" data-id="${song.id}" >Get Lyrics</button>
-                  
+                    <button class="btn" data-="${song.artist.name}">Get Lyrics</button>
+                   <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
               </li>`
       )
       .join('')}
   </ul>
-`};
+`;
 
   if (data.prev || data.next) {
     more.innerHTML = `
@@ -139,27 +139,29 @@ result.addEventListener('click', e=>{
     //CHECKING CLICKED ELEMENT IS BUTTON OR NOT
     if (clickedElement.tagName === 'BUTTON'){
         const songId = clickedElement.getAttribute("data-id");
-        const song = getSongFromId(songId)
-        selectedSong = song
-        getLyrics(song.artist.name, song.title);
+        const song = getSongFromId(songId);
+        selectedSong = song;
+        getLyrics();
         
        
     }
 })
+
 
 function getSongFromId(id){
   return searchResults.data.find((song) => song.id === id);
 }
   
 // GET LYRICS FOR SONG
+
 async function getLyrics(artist, songTitle) {
   const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
-
+  return searchResults.data.find((song) => song.id === id);
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   results.innerHTML = `
-                       <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                      
           <h2><strong>${artist}</strong> - ${songTitle}</h2>
           <p>${lyrics}</p>`;
 
@@ -172,7 +174,9 @@ async function getLyrics(artist, songTitle) {
 
 
 function addToList(artist, songTitle)  {
- 
+  const favorites = getFavorites();
+  favorites.push({artist,songTitle});
+  localStorage.setItem("favorites", JSON.stringify(favorites));
   
  
   notes.style.visibility = "visible";
@@ -180,7 +184,13 @@ function addToList(artist, songTitle)  {
 }
 
 // RETRIEVING AUTHOR AND TITLE 
-
+function getFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  if (favorites) {
+   favSongs.innerHTML = '';
+  }
+  return [];
+}
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
