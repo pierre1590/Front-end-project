@@ -57,6 +57,7 @@ async function searchSong(searchValue){
   const data = await searchResult.json();
   searchResults = data;
   showData(data);
+  
 
 }
 
@@ -72,7 +73,7 @@ function showData(data){
     notes.style.visibility = "visible";
     notes.style.backgroundColor = "lightcoral";
     notes.style.color = "darkred";
-    notes.style.fontSize = "28px";
+    notes.style.fontSize = "25px";
     notes.innerHTML = message;
 }else
   result.innerHTML = `
@@ -83,7 +84,7 @@ function showData(data){
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
                     <button class="btn" data-="${song.artist.name}">Get Lyrics</button>
-                   <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                  
               </li>`
       )
       .join('')}
@@ -109,22 +110,7 @@ function showData(data){
 
 //MORE SONGS
 async function getMoreSongs(url){
-  (function() {
-    var cors_api_host = 'cors-anywhere.herokuapp.com';
-    var cors_api_url = 'https://' + cors_api_host + '/';
-    var slice = [].slice;
-    var origin = window.location.protocol + '//' + window.location.host;
-    var open = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function() {
-        var args = slice.call(arguments);
-        var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
-        if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
-            targetOrigin[1] !== cors_api_host) {
-            args[1] = cors_api_url + args[1];
-        }
-        return open.apply(this, args);
-    };
-})();
+ 
   const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
   const data = await res.json();
   result.innerHTML = '';
@@ -157,13 +143,13 @@ function getSongFromId(id){
 async function getLyrics(artist, songTitle) {
   const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
-  return searchResults.data.find((song) => song.id === id);
+  
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   results.innerHTML = `
-                      
-          <h2><strong>${artist}</strong> - ${songTitle}</h2>
-          <p>${lyrics}</p>`;
+                  <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                  <h2><strong>${artist}</strong> - ${songTitle}</h2>
+                  <p>${lyrics}</p>`;
 
  
 

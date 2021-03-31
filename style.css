@@ -308,7 +308,7 @@ ul.fav-list li {
 footer{
     position: absolute;
     top:auto;
-    left:42%;
+    left:43%;
 }
 
 footer p{
@@ -358,4 +358,75 @@ footer p{
     background: radial-gradient(1.5em circle at  bottom , yellow , rgb(114, 0, 180));
     border-radius: 25%;
     cursor: pointer;
+}
+
+
+@media only screen and (max-width:400px){
+    h1{
+        font-size:40px;
+    }
+    
+    header{
+        height:100px;
+        width: 130px;
+    }
+
+    #form{
+        top:5%;
+        width:230px;
+    }
+
+    .search-box{
+        top: 8%;
+    }
+
+    #searched-text{
+        font-size: 15px;
+        width:450px;
+        height: 100px;
+    }
+
+    .reload{
+        height: 28px;
+        width: 28px;
+    }
+
+    #notifications{
+        font-size: 20px;
+        left:30px;
+        width:300px;
+    }
+
+    .star{
+        top: 32%;
+    }
+
+    .favorite{
+        width: 300px;
+        font-size: 25px;
+    }
+
+
+    footer{
+        top:auto;
+        left: 43%;
+    }
+
+    footer p{
+        width: 300px;
+        font-size: 18px;
+    }
+}
+
+/* Desktop style */
+
+@media only screen and (min-width:961px){
+    header{
+        height: 30%;
+    }
+   
+    footer{
+        top:auto;
+        left: 43%;
+    }
 }
