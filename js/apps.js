@@ -11,9 +11,6 @@ const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
 const removeItem = document.querySelector('.remove-item');
 
-let searchResults = null;
-let selectedSong = null;
-
 
 
 
@@ -55,10 +52,9 @@ research.addEventListener('keydown', function(e){
 async function searchSong(searchValue){
   const searchResult = await fetch(`${apiURL}/suggest/${searchValue}`);
   const data = await searchResult.json();
-  searchResults = data;
+  
   showData(data);
   
-
 }
 
 
@@ -83,8 +79,15 @@ function showData(data){
                     <span>
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
-                    <button class="btn" data-="${song.artist.name}">Get Lyrics</button>
-                  
+                    <div class="buttons">
+                      <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+                     
+                      <button class="btn_music>
+                          <i class="far fa-play-circle"></i>
+                          <i class="far fa-pause-circle"></i>
+                      </button>
+                      <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                    </div>
               </li>`
       )
       .join('')}
@@ -100,7 +103,7 @@ function showData(data){
     more.innerHTML = '';
   }
 
- 
+
 
   
   }
@@ -116,7 +119,15 @@ async function getMoreSongs(url){
   result.innerHTML = '';
   showData(data);
  
+ 
 }
+
+
+
+// PREVIEW SONG
+
+
+
 
 //EVENT LISTENER TO GET LYRICS
 result.addEventListener('click', e=>{
@@ -124,30 +135,28 @@ result.addEventListener('click', e=>{
 
     //CHECKING CLICKED ELEMENT IS BUTTON OR NOT
     if (clickedElement.tagName === 'BUTTON'){
-        const songId = clickedElement.getAttribute("data-id");
-        const song = getSongFromId(songId);
-        selectedSong = song;
-        getLyrics();
+        const artist = clickedElement.getAttribute("data-artist");
+        const songTitle = clickedElement.getAttribute("data-songtitle");
+        
+        getLyrics(artist, songTitle);
         
        
     }
 })
 
 
-function getSongFromId(id){
-  return searchResults.data.find((song) => song.id === id);
-}
+
   
 // GET LYRICS FOR SONG
 
-async function getLyrics(artist, songTitle) {
+async function getLyrics(artist,songTitle) {
   const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
   
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   results.innerHTML = `
-                  <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                 
                   <h2><strong>${artist}</strong> - ${songTitle}</h2>
                   <p>${lyrics}</p>`;
 
@@ -157,11 +166,9 @@ async function getLyrics(artist, songTitle) {
 
 //ADD SONG TO FAVOURITE LIST
 
-
-
 function addToList(artist, songTitle)  {
   const favorites = getFavorites();
-  favorites.push({artist,songTitle});
+  favorites.push({artist, songTitle});
   localStorage.setItem("favorites", JSON.stringify(favorites));
   
  
@@ -173,14 +180,18 @@ function addToList(artist, songTitle)  {
 function getFavorites() {
   const favorites = JSON.parse(localStorage.getItem("favorites"));
   if (favorites) {
-   favSongs.innerHTML = '';
+   favSongs.innerHTML = `<ul>
+                              <li>${favorites.artist}</li>
+   
+                        </ul>
+                        `;
   }
   return [];
 }
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
- let msg = confirm("Are you sure to delete all items?");
+ let msg = confirm("Are you sure to delete all items from the list?");
  if (msg = "ok"){
    localStorage.clear("obj");
    let items = ("All items have been deleted");

@@ -136,6 +136,7 @@ h1{
 ul.song-list{
     list-style-type: none;
     padding: 0;
+    width: 650px;
 }
 
 ul.song-list li {
@@ -143,6 +144,7 @@ ul.song-list li {
     align-items: center;
     justify-content: space-between;
     margin: 10px 0;
+
 }
 
 
@@ -155,7 +157,7 @@ ul.song-list li {
     width: 460px;
     padding-top:3px;
     border-radius: 15px;
-    left: 42%;
+    left: 38%;
     position: relative;
     visibility:hidden ;
 }
@@ -183,7 +185,27 @@ ul.song-list li {
     box-shadow: 2px 2px 3px rgb(2, 155, 2);
 }
 
+.btn_music{
+    
+    color: #01f;
+    font-size: 85px;
+    border:none;
 
+    transition: all linear .2s;
+    cursor: pointer;
+    outline: none;
+}
+
+.fa-pause-circle{
+    display:none;
+ }
+
+ .fa-play-circle{
+     height: 20px;
+     width: 20px;
+    
+ }
+ 
 
 .centered{
    
@@ -223,8 +245,8 @@ ul.song-list li {
     padding:2px;
     border-radius: 0% 0% 100% 50%;
     padding-left: 8px;
-    width:45%;
-    height: 700px;
+    width:42%;
+    height: 650px;
     position: absolute;
     transform: translateX(-101%);
     overflow: hidden;
@@ -249,9 +271,9 @@ ul.song-list li {
     
 }
 
-ul.fav-list{
-    
-    padding: 0;
+ul .fav-list{
+    list-style-type:none;
+    padding: 2px;
 }
 
 
@@ -409,7 +431,7 @@ footer p{
 
     footer{
         top:auto;
-        left: 43%;
+        left: 12%;
     }
 
     footer p{
