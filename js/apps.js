@@ -191,7 +191,7 @@ function addToList(artist, songTitle, songId)  {
         notes.innerHTML = ("Song successfully added to favorite list");   
 
       
- 
+}
         //invoke showFavorites on adding new new list to favourites
 
        showFavorites(); 
@@ -206,7 +206,7 @@ function getFavorites(){
   }else{
     return []
   }
-
+}
 
   function showFavorites(){
   const favorites = JSON.parse(localStorage.getItem("favorites"));
@@ -221,7 +221,7 @@ function getFavorites(){
                         `;
   }
 }
-//show favourites if there is a list in local storage
+
 showFavorites();
 
 
