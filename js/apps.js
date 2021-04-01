@@ -9,10 +9,11 @@ const favorite = document.querySelector('.favorite');
 const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
-const removeItem = document.querySelector('.remove-item');
-
-
-
+const remove_Item = document.querySelector('.remove-item');
+const btn_Music = document.querySelector('.btn_music');
+const play = document.querySelector('.fa-play-circle');
+const pause = document.querySelector('.fa-pause-circle');
+const myMusic = document.getElementById('music');
 
 // OPEN AND CLOSE FAVORITE LIST
 star.addEventListener('click', () => {
@@ -54,7 +55,7 @@ async function searchSong(searchValue){
   const data = await searchResult.json();
   
   showData(data);
-  
+  console.log(data);
 }
 
 
@@ -81,12 +82,12 @@ function showData(data){
                     </span>
                     <div class="buttons">
                       <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-                     
-                      <button class="btn_music>
+                      <audio id="music" src="data-preview='${song.link}'"></audio>
+                      <button class="btn_music">
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
                       </button>
-                      <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                      <button onclick = "addToList('${song.artist.name}', '${song.title}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
                     </div>
               </li>`
       )
@@ -123,11 +124,20 @@ async function getMoreSongs(url){
 }
 
 
-
+/*
 // PREVIEW SONG
+btn_Music.addEventListener('click', function(){
+  play.toggleClass('hide');
+  pause.toggleClass('fadeIn');
+  myMusic.play();
+})
 
-
-
+btn_Music.addEventListener('click', function(){
+  pause.toggleClass('hide');
+  play.toggleClass('fadeIn');
+  myMusic.pause();
+})
+*/
 
 //EVENT LISTENER TO GET LYRICS
 result.addEventListener('click', e=>{
@@ -137,8 +147,9 @@ result.addEventListener('click', e=>{
     if (clickedElement.tagName === 'BUTTON'){
         const artist = clickedElement.getAttribute("data-artist");
         const songTitle = clickedElement.getAttribute("data-songtitle");
+        const songId = clickedElement.getAttribute("data-id");
         
-        getLyrics(artist, songTitle);
+        getLyrics(artist, songTitle,songId);
         
        
     }
@@ -164,36 +175,65 @@ async function getLyrics(artist,songTitle) {
 
 }
 
+// PREVIEW OF A SONG
+
+
 //ADD SONG TO FAVOURITE LIST
 
-function addToList(artist, songTitle)  {
-  const favorites = getFavorites();
-  favorites.push({artist, songTitle});
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  
+function addToList(artist, songTitle, songId)  {
+
  
-  notes.style.visibility = "visible";
-  notes.innerHTML = ("Song successfully added to favorite list");                      
+        const favorites = getFavorites();
+        favorites.push({artist, songTitle, songId});
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        notes.style.visibility = "visible";
+        notes.innerHTML = ("Song successfully added to favorite list");   
+
+      
+ 
+        //invoke showFavorites on adding new new list to favourites
+
+       showFavorites(); 
+
+               
 }
 
 // RETRIEVING AUTHOR AND TITLE 
 function getFavorites() {
+   
   const favorites = JSON.parse(localStorage.getItem("favorites"));
-  if (favorites) {
-   favSongs.innerHTML = `<ul>
-                              <li>${favorites.artist}</li>
+
+  if(favorites){
+    return favorites;
+  }else{
+    return []
+  }
+
+
+  
+}
+
+function showFavorites(){
+  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  if (favorites.length) {
+   favSongs.innerHTML = `<ul class="fav">
+                              
+                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="remove-item">Remove</button></li>`}).join("")  }
    
                         </ul>
                         `;
   }
-  return [];
 }
+//show favourites if there is a list in local storage
+showFavorites();
+
+
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
  let msg = confirm("Are you sure to delete all items from the list?");
  if (msg = "ok"){
-   localStorage.clear("obj");
+   localStorage.clear("favorites");
    let items = ("All items have been deleted");
    favSongs.innerHTML = '';
    deleteItems.innerHTML = items;
@@ -201,4 +241,7 @@ removeAll.addEventListener('click', () => {
 })
 
 // REMOVE SINGLE ITEM 
-
+remove_Item.addEventListener('click', function()  {
+  localStorage.removeItem(favorites[songId]);
+  
+})
