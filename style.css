@@ -270,7 +270,6 @@ ul.fav{
     padding: 0;
     color: #11f;
     font-size: 18px;
-    overflow-y: scroll;
     text-align: center;
     position: relative;
 }
@@ -279,7 +278,7 @@ ul.fav{
 ul.fav li {
     display:flex;
     align-items: center;
-    justify-content:space-evenly;
+    justify-content: center;
     margin: 10px 0;
     
 }
@@ -463,7 +462,7 @@ footer p{
     ul.fav li {
         display:flex;
         align-items: center;
-        justify-content:space-evenly;
+      justify-content: center;
         margin: 10px 0;
         
     }
@@ -528,8 +527,8 @@ footer p{
         text-align: center;
         display:flex;
         align-items: center;
-        justify-content:space-evenly;
-        margin: 0 0;
+        justify-content: center;
+       padding: 10px;
         
     }
 

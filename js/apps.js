@@ -82,7 +82,7 @@ function showData(data){
                     </span>
                     <div class="buttons">
                       <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-                      <audio id="music" src="data-preview='${song.link}'"></audio>
+                      <audio id="music" src="${song.previev}"></audio>
                       <button class="btn_music">
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
