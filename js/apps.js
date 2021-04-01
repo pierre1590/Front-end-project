@@ -176,8 +176,12 @@ function addToList(artist, songTitle)  {
   
  
   notes.style.visibility = "visible";
-  notes.innerHTML = ("Song successfully added to favorite list");      
-  showFavorites()                
+  notes.innerHTML = ("Song successfully added to favorite list");   
+  
+  //invoke showFavorites on adding new new list to favourites
+
+  showFavorites() 
+               
 }
 
 // RETRIEVING AUTHOR AND TITLE 
@@ -200,12 +204,14 @@ function showFavorites(){
   if (favorites.length) {
    favSongs.innerHTML = `<ul>
                               
-                          ${favorites.map(fav => {return `<li>${fav.artist}, ${fav.songTitle}</li>`})  }
+                          ${favorites.map(fav => {return `<li>${fav.artist}, ${fav.songTitle}</li>`}).join("")  }
    
                         </ul>
                         `;
   }
 }
+//show favourites if there is a list in local storage
+showFavorites() 
 
 
 
