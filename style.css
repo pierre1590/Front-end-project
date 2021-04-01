@@ -244,11 +244,20 @@ ul.song-list li {
     padding:2px;
     border-radius: 0% 0% 100% 50%;
     padding-left: 8px;
+<<<<<<< HEAD
     width:50%;
     height: 650px;
     position: absolute;
     transform: translateX(-102%);
     overflow: hidden;
+=======
+    width:42%;
+    height: 680px;
+    position: absolute;
+    transform: translateX(-101%);
+    overflow-y: scroll;
+    overflow-x: hidden;
+>>>>>>> 2c065553a91fe3a929300115aa56363da575651b
     transition: all 800ms cubic-bezier(.8, 0, .33, 1);
 }
 

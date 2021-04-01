@@ -87,7 +87,11 @@ function showData(data){
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
                       </button>
+<<<<<<< HEAD
                       <button onclick = "addToList('${song.artist.name}', '${song.title}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
+=======
+                      <button onclick = "addToList('${song.artist.name}', '${song.title}')" class="add"><i class="fas fa-plus"></i></button>
+>>>>>>> 2c065553a91fe3a929300115aa56363da575651b
                     </div>
               </li>`
       )
@@ -180,6 +184,7 @@ async function getLyrics(artist,songTitle) {
 
 //ADD SONG TO FAVOURITE LIST
 
+<<<<<<< HEAD
 function addToList(artist, songTitle, songId)  {
 
  
@@ -195,12 +200,30 @@ function addToList(artist, songTitle, songId)  {
 
        showFavorites(); 
 
+=======
+function addToList(artist, songTitle)  {
+
+ 
+  const favorites = getFavorites();
+  favorites.push({artist, songTitle});
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+ 
+  
+ 
+  notes.style.visibility = "visible";
+  notes.innerHTML = ("Song successfully added to favorite list");   
+  
+  //invoke showFavorites on adding new new list to favourites
+
+  showFavorites() 
+>>>>>>> 2c065553a91fe3a929300115aa56363da575651b
                
 }
 
 // RETRIEVING AUTHOR AND TITLE 
 function getFavorites() {
    
+<<<<<<< HEAD
   const favorites = JSON.parse(localStorage.getItem("favorites"));
 
   if(favorites){
@@ -219,13 +242,37 @@ function showFavorites(){
    favSongs.innerHTML = `<ul class="fav">
                               
                           ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="remove-item">Remove</button></li>`}).join("")  }
+=======
+  const favorites = JSON.parse(localStorage.getItem("favorites"));
+
+  if(favorites){
+    return favorites;
+  }else{
+    return []
+  }
+
+
+  
+}
+
+function showFavorites(){
+  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  if (favorites.length) {
+   favSongs.innerHTML = `<ul>
+                              
+                          ${favorites.map(fav => {return `<li>${fav.artist}, ${fav.songTitle}</li>`}).join("")  }
+>>>>>>> 2c065553a91fe3a929300115aa56363da575651b
    
                         </ul>
                         `;
   }
 }
 //show favourites if there is a list in local storage
+<<<<<<< HEAD
 showFavorites();
+=======
+showFavorites() 
+>>>>>>> 2c065553a91fe3a929300115aa56363da575651b
 
 
 
