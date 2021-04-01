@@ -200,7 +200,7 @@ function showFavorites(){
   if (favorites.length) {
    favSongs.innerHTML = `<ul>
                               
-                          ${favorites.map(fav => {return `<li>${fav.artist}, ${fav.songTitle}</li>`})  }
+                          ${favorites.map(fav => {return `<li>${fav.artist}, ${fav.songTitle}</li>`}).join("")  }
    
                         </ul>
                         `;
