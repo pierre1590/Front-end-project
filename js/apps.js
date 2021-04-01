@@ -86,7 +86,7 @@ function showData(data){
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
                       </button>
-                      <button onclick="addToList()" class="add"><i class="fas fa-plus"></i></button>
+                      <button onclick = "addToList('${song.artist.name}', '${song.title}')" class="add"><i class="fas fa-plus"></i></button>
                     </div>
               </li>`
       )
@@ -167,27 +167,47 @@ async function getLyrics(artist,songTitle) {
 //ADD SONG TO FAVOURITE LIST
 
 function addToList(artist, songTitle)  {
+
+ 
   const favorites = getFavorites();
   favorites.push({artist, songTitle});
   localStorage.setItem("favorites", JSON.stringify(favorites));
+ 
   
  
   notes.style.visibility = "visible";
-  notes.innerHTML = ("Song successfully added to favorite list");                      
+  notes.innerHTML = ("Song successfully added to favorite list");      
+  showFavorites()                
 }
 
 // RETRIEVING AUTHOR AND TITLE 
 function getFavorites() {
+   
   const favorites = JSON.parse(localStorage.getItem("favorites"));
-  if (favorites) {
+
+  if(favorites){
+    return favorites;
+  }else{
+    return []
+  }
+
+
+  
+}
+
+function showFavorites(){
+  const favorites = JSON.parse(localStorage.getItem("favorites"));
+  if (favorites.length) {
    favSongs.innerHTML = `<ul>
-                              <li>${favorites.artist}</li>
+                              
+                          ${favorites.map(fav => {return `<li>${fav.artist}, ${fav.songTitle}</li>`}).join("")  }
    
                         </ul>
                         `;
   }
-  return [];
 }
+
+
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
