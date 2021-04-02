@@ -246,4 +246,12 @@ removeAll.addEventListener('click', () => {
 })
 
 // REMOVE SINGLE ITEM 
+function removeSingleFavorite(songId){
+  let remainingFavs = JSON.parse(localStorage.getItem("favorites")).filter(item => item.songId!== songId );
 
+  localStorage.setItem("favorites", JSON.stringify(remainingFavs));
+  //invoke show favorites after deleting item
+
+  showFavorites(); 
+
+}
