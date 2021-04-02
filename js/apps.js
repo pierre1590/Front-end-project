@@ -36,7 +36,9 @@ form.addEventListener('submit', e => {
     alert("There is nothing to search")
   }
   else {
-    searchSong(searchValue);
+   searchSong(searchValue).catch(err => {
+		result.innerHTML = `<div>API server error ${err}</div>`
+	});
   }
   
 })
