@@ -58,7 +58,7 @@ async function searchSong(searchValue){
   
   showData(data);
   console.log(data);
-  notes.style.visibility = "hidden";
+  
 }
 
 
@@ -75,7 +75,7 @@ function showData(data){
     notes.style.color = "darkred";
     notes.style.fontSize = "25px";
     notes.innerHTML = message;
-}else
+}else{
   result.innerHTML = `
   <ul class="song-list">
     ${data.data
@@ -97,7 +97,7 @@ function showData(data){
       .join('')}
   </ul>
 `;
-
+}
   if (data.prev || data.next) {
     more.innerHTML = `
     ${data.prev ? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>` : ''}
@@ -106,11 +106,11 @@ function showData(data){
   } else {
     more.innerHTML = '';
   }
-
+}
 
 
   
-  }
+
 
 
 
@@ -178,15 +178,14 @@ async function getLyrics(artist,songTitle,songId) {
 
 }
 
-// PREVIEW OF A SONG
 
 
 //ADD SONG TO FAVOURITE LIST
 
 
 function addToList(artist, songTitle, songId)  {
-
- if (songId){
+   
+ if (songId){ 
         const favorites = getFavorites();
         favorites.push({artist, songTitle, songId});
         localStorage.setItem("favorites", JSON.stringify(favorites));
@@ -226,7 +225,9 @@ function getFavorites(){
                         </ul>
                         `;
   }else{
-    favSongs.innerHTML = `<div>no items to show</div>`
+    favSongs.style.textAlign = "center";
+    favSongs.style.color = "blue";
+    favSongs.innerHTML = `<div>No items to show</div>`
   }
     deleteItems.innerHTML = '';
 }
@@ -247,8 +248,9 @@ removeAll.addEventListener('click', () => {
 
 // REMOVE SINGLE ITEM 
 function removeSingleFavorite(songId){
+  
+  
   let remainingFavs = JSON.parse(localStorage.getItem("favorites")).filter(item => item.songId!== songId );
-
   localStorage.setItem("favorites", JSON.stringify(remainingFavs));
   //invoke show favorites after deleting item
 
