@@ -184,6 +184,7 @@ async function getLyrics(artist,songTitle,songId) {
 
 
 function addToList(artist, songTitle, songId)  {
+<<<<<<< HEAD
     /*let selectedItem = JSON.parse(localStorage.getItem("favorites")).find(item => item.songId !== songId );
  if  {*/ 
         const favorites = getFavorites();
@@ -201,6 +202,22 @@ function addToList(artist, songTitle, songId)  {
 
         //invoke showFavorites on adding new new list to favourites
 
+=======
+        const favorites = getFavorites();
+	    if(favorites.some(fav => fav.songId == songId)){
+		 notes.style.backgroundColor = "#f40c0c";
+		 notes.style.color = "#fff";
+		 notes.style.visibility = "visible";
+                 notes.innerHTML = ("song is already in fav-list");
+		}else{
+		    favorites.push({artist, songTitle, songId});
+	            localStorage.setItem("favorites", JSON.stringify(favorites));
+		    notes.style.backgroundColor = "#6dc262";
+                    notes.style.visibility = "visible";
+                    notes.innerHTML = ("Song successfully added to favorite list");
+		}   
+        //invoke showFavorites on adding new list to favourites
+>>>>>>> 7ca2e8ed62dd2ec7cf73a40c3c2752309d47f699
        showFavorites(); 
 
 }
