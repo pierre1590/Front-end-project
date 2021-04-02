@@ -184,19 +184,19 @@ async function getLyrics(artist,songTitle,songId) {
 
 
 function addToList(artist, songTitle, songId)  {
-   
- if (songId){ 
+    /*let selectedItem = JSON.parse(localStorage.getItem("favorites")).find(item => item.songId !== songId );
+ if  {*/ 
         const favorites = getFavorites();
         favorites.push({artist, songTitle, songId});
         localStorage.setItem("favorites", JSON.stringify(favorites));
         notes.style.visibility = "visible";
         notes.innerHTML = ("Song successfully added to favorite list");   
- }else{
+ /*}else{
         notes.style.background = "yellow";
         notes.style.color = "red";
         notes.style.visibility = "visible";
         notes.innerHTML = ("Song already added to the list!");
- }
+ }*/
       
 
         //invoke showFavorites on adding new new list to favourites
@@ -220,7 +220,7 @@ function getFavorites(){
   if (favorites?.length) {
    favSongs.innerHTML = `<ul class="fav">
                               
-                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="btn" onclick="getLyrics('${fav.artist}', '${fav.songTitle}')">Get Lyrics</button><button class="remove-item">Remove</button></li>`}).join("")  }
+                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="btn" onclick="getLyrics('${fav.artist}', '${fav.songTitle}')">Get Lyrics</button><button class="remove-item" onclick="removeSingleFavorite('${fav.songId}')">Remove</button></li>`}).join("")  }
 
                         </ul>
                         `;
