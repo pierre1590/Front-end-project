@@ -9,7 +9,7 @@ const favorite = document.querySelector('.favorite');
 const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
-const remove_Item = document.querySelector('.remove-item');
+
 const btn_Music = document.querySelector('.btn_music');
 const play = document.querySelector('.fa-play-circle');
 const pause = document.querySelector('.fa-pause-circle');
@@ -87,7 +87,7 @@ function showData(data){
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
                       </button>
-                      <button onclick = "addToList('${song.artist.name}', '${song.title}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
+                      <button onclick = "addToList('${song.artist.name}', '${song.title.replace(/'/g, "\\'")}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
                     </div>
               </li>`
       )
@@ -183,19 +183,16 @@ async function getLyrics(artist,songTitle) {
 
 function addToList(artist, songTitle, songId)  {
 
- 
         const favorites = getFavorites();
         favorites.push({artist, songTitle, songId});
         localStorage.setItem("favorites", JSON.stringify(favorites));
         notes.style.visibility = "visible";
         notes.innerHTML = ("Song successfully added to favorite list");   
 
-      
-}
-        //invoke showFavorites on adding new new list to favourites
+        //invoke showFavorites on adding new list to favourites
 
        showFavorites(); 
-
+}
 
 
 // RETRIEVING AUTHOR AND TITLE 
@@ -210,21 +207,19 @@ function getFavorites(){
 
   function showFavorites(){
   const favorites = JSON.parse(localStorage.getItem("favorites"));
-  if (favorites.length) {
+  if (favorites?.length) {
    favSongs.innerHTML = `<ul class="fav">
                               
-                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="remove-item">Remove</button></li>`}).join("")  }
+                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="remove-item" onclick="removeSingleFavorite('${fav.songId}')">Remove</button></li>`}).join("")  }
 
-                              
-                         
                         </ul>
                         `;
+  }else{
+    favSongs.innerHTML = `<div>no items to show</div>`
   }
 }
 
 showFavorites();
-
-
 
 
 // REMOVE ALL ITEMS FROM LIST
@@ -239,8 +234,13 @@ removeAll.addEventListener('click', () => {
 })
 
 // REMOVE SINGLE ITEM 
-remove_Item.addEventListener('click', function()  {
-  localStorage.removeItem(favorites[songId]);
+function removeSingleFavorite(songId){
+  let remainingFavs = JSON.parse(localStorage.getItem("favorites")).filter(item => item.songId!== songId );
   
+  localStorage.setItem("favorites", JSON.stringify(remainingFavs));
+  //invoke show favorites after deleting item
+
+  showFavorites(); 
+
 }
-)
+
