@@ -9,7 +9,7 @@ const favorite = document.querySelector('.favorite');
 const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
-const remove_Item = document.querySelector('.remove-item');
+
 const btn_Music = document.querySelector('.btn_music');
 const play = document.querySelector('.fa-play-circle');
 const pause = document.querySelector('.fa-pause-circle');
@@ -36,7 +36,9 @@ form.addEventListener('submit', e => {
     alert("There is nothing to search")
   }
   else {
-    searchSong(searchValue);
+   searchSong(searchValue).catch(err => {
+		result.innerHTML = `<div>API server error ${err}</div>`
+	});
   }
   
 })
@@ -88,7 +90,7 @@ function showData(data){
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
                       </button>
-                      <button onclick = "addToList('${song.artist.name}', '${song.title}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
+                      <button onclick = "addToList('${song.artist.name}', '${song.title.replace(/'/g, "\\'")}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
                     </div>
               </li>`
       )
@@ -216,22 +218,20 @@ function getFavorites(){
 
   function showFavorites(){
   const favorites = JSON.parse(localStorage.getItem("favorites"));
-  if (favorites.length) {
+  if (favorites?.length) {
    favSongs.innerHTML = `<ul class="fav">
                               
                           ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="btn" onclick="getLyrics('${fav.artist}', '${fav.songTitle}')">Get Lyrics</button><button class="remove-item">Remove</button></li>`}).join("")  }
 
-                              
-                         
                         </ul>
                         `;
+  }else{
+    favSongs.innerHTML = `<div>no items to show</div>`
   }
     deleteItems.innerHTML = '';
 }
 
 showFavorites();
-
-
 
 
 // REMOVE ALL ITEMS FROM LIST
