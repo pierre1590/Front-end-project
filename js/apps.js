@@ -56,6 +56,7 @@ async function searchSong(searchValue){
   
   showData(data);
   console.log(data);
+  notes.style.visibility = "hidden";
 }
 
 
@@ -160,18 +161,18 @@ result.addEventListener('click', e=>{
   
 // GET LYRICS FOR SONG
 
-async function getLyrics(artist,songTitle) {
+async function getLyrics(artist,songTitle,songId) {
   const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
   
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   results.innerHTML = `
-                 
+                  <button onclick = "addToList('${artist}', '${songTitle}', '${songId}')" class="add"><i class="fas fa-plus"></i></button>
                   <h2><strong>${artist}</strong> - ${songTitle}</h2>
                   <p>${lyrics}</p>`;
-
- 
+  notes.style.visibility = "hidden";
+ notes.innerHTML= '';
 
 }
 
@@ -183,20 +184,25 @@ async function getLyrics(artist,songTitle) {
 
 function addToList(artist, songTitle, songId)  {
 
- 
+ if (songId){
         const favorites = getFavorites();
         favorites.push({artist, songTitle, songId});
         localStorage.setItem("favorites", JSON.stringify(favorites));
         notes.style.visibility = "visible";
         notes.innerHTML = ("Song successfully added to favorite list");   
-
+ }else{
+        notes.style.background = "yellow";
+        notes.style.color = "red";
+        notes.style.visibility = "visible";
+        notes.innerHTML = ("Song already added to the list!");
+ }
       
-}
+
         //invoke showFavorites on adding new new list to favourites
 
        showFavorites(); 
 
-
+}
 
 // RETRIEVING AUTHOR AND TITLE 
 function getFavorites(){
@@ -213,13 +219,14 @@ function getFavorites(){
   if (favorites.length) {
    favSongs.innerHTML = `<ul class="fav">
                               
-                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="remove-item">Remove</button></li>`}).join("")  }
+                          ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="btn" onclick="getLyrics('${fav.artist}', '${fav.songTitle}')">Get Lyrics</button><button class="remove-item">Remove</button></li>`}).join("")  }
 
                               
                          
                         </ul>
                         `;
   }
+    deleteItems.innerHTML = '';
 }
 
 showFavorites();
@@ -229,18 +236,14 @@ showFavorites();
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
- let msg = confirm("Are you sure to delete all items from the list?");
- if (msg = "ok"){
+ 
    localStorage.clear("favorites");
    let items = ("All items have been deleted");
-   favSongs.innerHTML = '';
    deleteItems.innerHTML = items;
- }  
+   favSongs.innerHTML = '';
+  
+ 
 })
 
 // REMOVE SINGLE ITEM 
-remove_Item.addEventListener('click', function()  {
-  localStorage.removeItem(favorites[songId]);
-  
-}
-)
+
