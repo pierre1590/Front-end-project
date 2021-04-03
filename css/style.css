@@ -150,7 +150,7 @@ ul.song-list{
 ul.song-list li {
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-between;
     margin: 10px 0;
 
 }
@@ -182,6 +182,9 @@ ul.song-list li {
     margin-left:5px;
 }
 
+
+
+
 .add{
     text-align: center;
     color:rgb(23, 216, 23);
@@ -194,25 +197,8 @@ ul.song-list li {
     box-shadow: 2px 2px 3px rgb(2, 155, 2);
 }
 
-.btn_music{
-    
-    color: #01f;
-   
-    border:none;
-    height: 24px;
-    width: 24px;
-   
-    cursor: pointer;
-    outline: none;
-    border-radius: 10%;
-}
-
-.fa-pause-circle{
-    display:none;
- }
 
 
- 
 
 .centered{
    

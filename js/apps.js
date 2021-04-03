@@ -10,10 +10,6 @@ const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
 
-const btn_Music = document.querySelector('.btn_music');
-const play = document.querySelector('.fa-play-circle');
-const pause = document.querySelector('.fa-pause-circle');
-const myMusic = document.getElementById('music');
 
 // OPEN AND CLOSE FAVORITE LIST
 star.addEventListener('click', () => {
@@ -85,11 +81,11 @@ function showData(data){
                     </span>
                     <div class="buttons">
                       <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-                      <audio><source  src="${song.previev}"></audio>
-                      <button class="btn_music">
-                          <i class="far fa-play-circle"></i>
-                          <i class="far fa-pause-circle"></i>
-                      </button>
+                        <audio src="${song.previev}" id="music"></audio>
+                          <button class="btn_music">
+                            <i class="far fa-play-circle"></i>
+                            <i class="far fa-pause-circle"></i>
+                          </button>
                       <button onclick = "addToList('${song.artist.name}', '${song.title.replace(/'/g, "\\'")}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
                     </div>
               </li>`
@@ -127,8 +123,6 @@ async function getMoreSongs(url){
 }
 
 
-
-// PREVIEW SONG
 
 
 //EVENT LISTENER TO GET LYRICS
