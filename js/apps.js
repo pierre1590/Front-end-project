@@ -57,7 +57,7 @@ async function searchSong(searchValue){
   
 }
 
-//reload page
+//RELOAD PAGE
 
 function reloadpage(){
   location.reload()
@@ -87,11 +87,9 @@ function showData(data){
                     </span>
                     <div class="buttons">
                       <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-                        <audio src="${song.previev}" id="music"></audio>
-                          <button class="btn_music">
-                            <i class="far fa-play-circle"></i>
-                            <i class="far fa-pause-circle"></i>
-                          </button>
+                        <audio id="music" controls="play/pause" id="music">
+                            <source src="${song.preview}" type="audio/mpeg">
+                        </audio> 
                       <button onclick = "addToList('${song.artist.name}', '${song.title.replace(/'/g, "\\'")}', '${song.id}')" class="add"><i class="fas fa-plus"></i></button>
                     </div>
               </li>`

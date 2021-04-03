@@ -183,6 +183,16 @@ ul.song-list li {
 }
 
 
+#music {
+    outline: none;
+    width: 102px;
+    height: 23px;
+    border: 15%;
+    
+}
+
+
+
 
 
 .add{
@@ -247,6 +257,9 @@ ul.song-list li {
     z-index:2;
 }
 
+.favorite::-webkit-scrollbar{
+    display: none;
+}
 
 
 .favorite-view{
@@ -446,9 +459,7 @@ footer p{
         top: 18%;
     }
 
-    .fa-pause-circle{
-        display:hidden;
-     }
+   
 
     .favorite{
         width: 90%;
