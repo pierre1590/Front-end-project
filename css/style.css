@@ -2,8 +2,11 @@
 
 body{
     background-color: beige;
+    overflow-x:hidden;
     
 }
+
+
 
 
 header{
@@ -118,8 +121,8 @@ h1{
 
 
 .results{
-    max-width:100%;
-    width: 500px;
+    max-width:50%;
+    width: 400px;
     margin: 30px auto;
     font-family: 'Pacifico', serif;
     font-size: 20px;
@@ -157,8 +160,8 @@ ul.song-list li {
     font-size: 20px;
     text-align: center;
     font-family: 'Pacifico', serif;
-    color: rgb(21, 156, 43);
-    background-color: lightgreen;
+    color: #fff;
+   
     width: 460px;
     padding-top:3px;
     border-radius: 15px;
@@ -236,7 +239,7 @@ ul.song-list li {
     outline: none;
     border-radius: 20px;
     cursor: pointer;
-   
+    z-index: 4;
     border-radius: 25px;
 }
 
@@ -258,6 +261,8 @@ ul.song-list li {
     z-index:2;
 }
 
+
+
 .favorite-view{
     transform: translateX(0);
     border-radius: 0% 5% 5% 0%;
@@ -277,8 +282,11 @@ ul.fav{
     color: #11f;
     font-size: 18px;
     text-align: center;
-    position: relative;
+    position: relative; 
 }
+
+
+
 
 
 ul.fav li {

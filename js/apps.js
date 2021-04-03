@@ -85,7 +85,7 @@ function showData(data){
                     </span>
                     <div class="buttons">
                       <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
-                      <audio id="music" src="${song.previev}"></audio>
+                      <audio><source  src="${song.previev}"></audio>
                       <button class="btn_music">
                           <i class="far fa-play-circle"></i>
                           <i class="far fa-pause-circle"></i>
@@ -127,20 +127,9 @@ async function getMoreSongs(url){
 }
 
 
-/*
-// PREVIEW SONG
-btn_Music.addEventListener('click', function(){
-  play.toggleClass('hide');
-  pause.toggleClass('fadeIn');
-  myMusic.play();
-})
 
-btn_Music.addEventListener('click', function(){
-  pause.toggleClass('hide');
-  play.toggleClass('fadeIn');
-  myMusic.pause();
-})
-*/
+// PREVIEW SONG
+
 
 //EVENT LISTENER TO GET LYRICS
 result.addEventListener('click', e=>{
@@ -170,7 +159,7 @@ async function getLyrics(artist,songTitle,songId) {
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   results.innerHTML = `
-                  <button onclick = "addToList('${artist}', '${songTitle}', '${songId}')" class="add"><i class="fas fa-plus"></i></button>
+  
                   <h2><strong>${artist}</strong> - ${songTitle}</h2>
                   <p>${lyrics}</p>`;
   notes.style.visibility = "hidden";
@@ -184,40 +173,23 @@ async function getLyrics(artist,songTitle,songId) {
 
 
 function addToList(artist, songTitle, songId)  {
-<<<<<<< HEAD
-    /*let selectedItem = JSON.parse(localStorage.getItem("favorites")).find(item => item.songId !== songId );
- if  {*/ 
-        const favorites = getFavorites();
-        favorites.push({artist, songTitle, songId});
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        notes.style.visibility = "visible";
-        notes.innerHTML = ("Song successfully added to favorite list");   
- /*}else{
-        notes.style.background = "yellow";
-        notes.style.color = "red";
-        notes.style.visibility = "visible";
-        notes.innerHTML = ("Song already added to the list!");
- }*/
+  const favorites = getFavorites();
+  if(favorites.some(fav => fav.songId == songId)){
+      notes.style.backgroundColor = "#f40c0c";
+      notes.style.color = "#fff";
+      notes.style.visibility = "visible";
+      notes.innerHTML = ("Song is already in favorite list");
+   }else{
+       favorites.push({artist, songTitle, songId});
+       localStorage.setItem("favorites", JSON.stringify(favorites));
+       notes.style.backgroundColor = "#6dc262";
+       notes.style.visibility = "visible";
+       notes.innerHTML = ("Song successfully added to favorite list");
+   }   
       
 
-        //invoke showFavorites on adding new new list to favourites
+        //invoke showFavorites on adding new  song to favorites
 
-=======
-        const favorites = getFavorites();
-	    if(favorites.some(fav => fav.songId == songId)){
-		 notes.style.backgroundColor = "#f40c0c";
-		 notes.style.color = "#fff";
-		 notes.style.visibility = "visible";
-                 notes.innerHTML = ("song is already in fav-list");
-		}else{
-		    favorites.push({artist, songTitle, songId});
-	            localStorage.setItem("favorites", JSON.stringify(favorites));
-		    notes.style.backgroundColor = "#6dc262";
-                    notes.style.visibility = "visible";
-                    notes.innerHTML = ("Song successfully added to favorite list");
-		}   
-        //invoke showFavorites on adding new list to favourites
->>>>>>> 7ca2e8ed62dd2ec7cf73a40c3c2752309d47f699
        showFavorites(); 
 
 }
@@ -254,12 +226,15 @@ showFavorites();
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
- 
+ let msg = confirm("Are sure to delete all items in the list?");
+ if(msg === true){
    localStorage.clear("favorites");
    let items = ("All items have been deleted");
    deleteItems.innerHTML = items;
    favSongs.innerHTML = '';
-  
+ }else{
+   showFavorites();
+ }
  
 })
 
