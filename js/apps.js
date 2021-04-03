@@ -57,6 +57,12 @@ async function searchSong(searchValue){
   
 }
 
+//reload page
+
+function reloadpage(){
+  location.reload()
+}
+
 
 // DISPLAY FINAL RESULT
 
