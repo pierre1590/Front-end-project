@@ -21,7 +21,6 @@ star.addEventListener('click', () => {
 const apiURL = 'https://api.lyrics.ovh';
 
 
-
 // ADD EVENT LISTENER
 
 form.addEventListener('submit', e => {
@@ -115,14 +114,13 @@ function showData(data){
 
 
 
+
 //MORE SONGS
 async function getMoreSongs(url){
- 
-  const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
+  const res = await fetch(`https://cors.bridged.cc/${url}`);
   const data = await res.json();
   result.innerHTML = '';
   showData(data);
- 
  
 }
 
@@ -150,10 +148,16 @@ result.addEventListener('click', e=>{
   
 // GET LYRICS FOR SONG
 
-async function getLyrics(artist,songTitle,songId) {
-  const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
+async function getLyrics(artist,songTitle) {
+  const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`,{
+    mode : 'cors' ,
+    headers : {
+      'Access-Control-Allow-Origin' : 'http://127.0.0.1:5500/'
+    },
+  }
+  );
   const data = await res.json();
-  
+
   const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   results.innerHTML = `

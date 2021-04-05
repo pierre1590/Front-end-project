@@ -121,13 +121,13 @@ h1{
 
 
 .results{
-    max-width:50%;
-    width: 400px;
-    margin: 30px auto;
+    max-width:70%;
+    width: 500px;
+    margin:  auto;
     font-family: 'Pacifico', serif;
     font-size: 20px;
-    border-radius: 10px;
-    padding-left: 8px;
+    
+    margin-left: 42%;
     color:#11f;
     text-align: center;
     position: relative;
@@ -249,7 +249,7 @@ ul.song-list li {
     border-radius: 0% 0% 100% 50%;
     padding-left: 8px;
     width:35%;
-    height: 680px;
+    height: 70%;
     position: absolute;
     transform: translateX(-102%);
     overflow-y: scroll;
@@ -436,9 +436,14 @@ footer p{
     }
 
     .results{
-        width: 200px;
+        width: 100px;
         text-align: center;
         position: relative;
+        max-width:30%;       
+        margin-left: 0;
+        font-family: 'Pacifico', serif;
+        font-size: 18px;
+        color:#11f;
     }
 
     #notifications{
@@ -500,7 +505,7 @@ footer p{
 
     footer{
         top:80%;
-        left: 12%;
+        left: 2px;
     }
 
     footer::after{
@@ -526,13 +531,13 @@ footer p{
     }
    
     .results{
-    max-width:100%;
-    width: 500px;
-    margin: 30px auto;
+    max-width:50%;
+    width: 400px;
+    
     font-family: 'Pacifico', serif;
     font-size: 20px;
-    border-radius: 10px;
-    padding-left: 8px;
+    margin-left: 42%;
+    
     color:#11f;
     text-align: center;
     position: relative;
