@@ -1,6 +1,7 @@
 
 
 body{
+    width: auto;
     background-color: beige;
     overflow-x:hidden;
     
@@ -21,6 +22,7 @@ header{
     padding: 100px;
     position: relative;
     border-radius: 15px;
+    width: 100% cover;
     
 }
 
@@ -122,11 +124,10 @@ h1{
 
 .results{
     max-width:70%;
-    width: 500px;
+    width: 300px;
     margin:  auto;
     font-family: 'Pacifico', serif;
     font-size: 20px;
-    
     margin-left: 42%;
     color:#11f;
     text-align: center;
@@ -211,14 +212,16 @@ ul.song-list li {
 
 
 .centered{
-   
+ 
     display: flex;
     justify-content: center;
 }
 
 .centered button{
     transform: scale(1.3);
-    margin: 15px;
+    margin: 0 auto;
+    margin-left: 35%;
+   
 }
 
 
@@ -436,16 +439,20 @@ footer p{
     }
 
     .results{
-        width: 100px;
+        width: 200px;
         text-align: center;
         position: relative;
         max-width:30%;       
-        margin-left: 0;
+        margin-left: 35%;
         font-family: 'Pacifico', serif;
         font-size: 18px;
         color:#11f;
     }
 
+    .centered button{
+            margin: 0 auto;
+            margin-left: 35%;
+}
     #notifications{
         font-size: 20px;
         left:30px;
@@ -467,6 +474,7 @@ footer p{
    
 
     .favorite{
+        top:58%;
         width: 90%;
         overflow-y: scroll;
     }
@@ -533,17 +541,20 @@ footer p{
     .results{
     max-width:50%;
     width: 400px;
-    
     font-family: 'Pacifico', serif;
     font-size: 20px;
-    margin-left: 42%;
-    
+    margin-left: 40%;  
     color:#11f;
     text-align: center;
     position: relative;
     
     }
 
+
+    .centered button{
+        margin: 0 auto;
+        margin-left: 48%;
+}
 
     ul.song-list li {
         display:flex;

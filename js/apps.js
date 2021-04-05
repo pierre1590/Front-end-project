@@ -151,8 +151,8 @@ result.addEventListener('click', e=>{
 async function getLyrics(artist,songTitle) {
   const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`,{
     mode : 'cors' ,
-    headers : {
-      'Access-Control-Allow-Origin' : 'http://127.0.0.1:5500/'
+    header : {
+      'Access-Control-Allow-Origin' : 'http://localhost:5500/'
     },
   }
   );
@@ -164,10 +164,10 @@ async function getLyrics(artist,songTitle) {
   
                   <h2><strong>${artist}</strong> - ${songTitle}</h2>
                   <p>${lyrics}</p>`;
-  notes.style.visibility = "hidden";
- notes.innerHTML= '';
-
+                  notes.style.visibility = "hidden";
+                  notes.innerHTML= '';
 }
+
 
 
 
