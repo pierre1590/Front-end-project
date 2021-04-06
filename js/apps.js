@@ -9,6 +9,8 @@ const favorite = document.querySelector('.favorite');
 const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
+const reload = document.querySelector('.reload');
+const removeSingleItem = D('.remove-item');
 
 
 // OPEN AND CLOSE FAVORITE LIST
@@ -61,6 +63,8 @@ function reloadpage(){
   location.reload()
 }
 
+//EVENT LISTENER RELOAD PAGE
+reload.addEventListener('click', reloadpage);
 
 
 // DISPLAY FINAL RESULT
@@ -187,7 +191,6 @@ function getFavorites(){
    favSongs.innerHTML = `<ul class="fav">
                               
                           ${favorites.map(fav => {return `<li>${fav.artist} - ${fav.songTitle} <button class="btn" onclick="getLyrics('${fav.artist}', '${fav.songTitle}')">Get Lyrics</button><button class="remove-item" onclick="removeSingleFavorite('${fav.songId}')">Remove</button></li>`}).join("")  }
-
                         </ul>
                         `;
   }else{
@@ -225,3 +228,6 @@ function removeSingleFavorite(songId){
   showFavorites(); 
 
 }
+
+//ADD EVENT LISTENER REMOVE SINGLE ITEM
+
