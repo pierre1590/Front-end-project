@@ -52,7 +52,6 @@ async function searchSong(searchValue){
   const data = await searchResult.json();
   
   showData(data);
-  console.log(data);
   
 }
 
@@ -86,7 +85,7 @@ function showData(data){
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
                     <div class="buttons">
-                      <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+                      <button class="btn" onclick="getLyrics('${song.artist.name}', '${song.title}')">Get Lyrics</button>
                         <audio id="music" controls="play/pause" id="music">
                             <source src="${song.preview}" type="audio/mpeg">
                         </audio> 
@@ -109,11 +108,6 @@ function showData(data){
 }
 
 
-  
-
-
-
-
 
 
 //MORE SONGS
@@ -125,35 +119,14 @@ async function getMoreSongs(url){
  console.log(data);
 }
 
-
-
-
-//EVENT LISTENER TO GET LYRICS
-result.addEventListener('click', e=>{
-    const clickedElement = e.target;
-
-    //CHECKING CLICKED ELEMENT IS BUTTON OR NOT
-    if (clickedElement.tagName === 'BUTTON'){
-        const artist = clickedElement.getAttribute("data-artist");
-        const songTitle = clickedElement.getAttribute("data-songtitle");
-        const songId = clickedElement.getAttribute("data-id");
-        
-        getLyrics(artist, songTitle,songId);
-        
-       
-    }
-})
-
-
-
   
 // GET LYRICS FOR SONG
 
 async function getLyrics(artist,songTitle) {
   const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
+  console.log(data)
 
-  
 if(data.hasOwnProperty("error")){
     results.innerHTML = `<h2>No lyrics found for this song</h2>`;
     notes.style.visibility = "hidden";
