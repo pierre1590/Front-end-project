@@ -150,26 +150,21 @@ result.addEventListener('click', e=>{
 // GET LYRICS FOR SONG
 
 async function getLyrics(artist,songTitle) {
-  const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`,{
-    mode : 'cors' ,
-    header : {
-      'Access-Control-Allow-Origin' : 'http://localhost:5500/'
-    },
-  }
-  );
+  const res = await fetch(`${apiURL}/v1/${artist}/${songTitle}`);
   const data = await res.json();
 
-  const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
-if(!data){
-  alert("No lyrics found");
-}else{
-  results.innerHTML = `
   
+if(data.hasOwnProperty("error")){
+    results.innerHTML = `<h2>No lyrics found for this song</h2>`;
+    notes.style.visibility = "hidden";
+    notes.innerHTML= '';
+}else{
+  const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+  results.innerHTML = `
                   <h2><strong>${artist}</strong> - ${songTitle}</h2>
                   <p>${lyrics}</p>`;
                   notes.style.visibility = "hidden";
-                  notes.innerHTML= '';
-                  
+                  notes.innerHTML= '';               
 }
 }
 
