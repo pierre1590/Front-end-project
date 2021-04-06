@@ -76,7 +76,10 @@ function showData(data){
     notes.style.color = "darkred";
     notes.style.fontSize = "25px";
     notes.innerHTML = message;
+    result.innerHTML = '';
 }else{
+  notes.style.visibility = "hidden";
+  notes.innerHTML = '';
   result.innerHTML = `
   <ul class="song-list">
     ${data.data
@@ -162,7 +165,7 @@ function addToList(artist, songTitle, songId)  {
    }   
       
 
-        //invoke showFavorites on adding new  song to favorites
+        
 
        showFavorites(); 
 
@@ -218,8 +221,7 @@ function removeSingleFavorite(songId){
   
   let remainingFavs = JSON.parse(localStorage.getItem("favorites")).filter(item => item.songId!== songId );
   localStorage.setItem("favorites", JSON.stringify(remainingFavs));
-  //invoke show favorites after deleting item
-
+  
   showFavorites(); 
 
 }
