@@ -5,9 +5,9 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
     mode: 'development',
-    entry: ['./js/app.js', './css/style.css'],
+    entry: ['./js/apps.js', './css/style.css'],
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, './dist'),
         filename: 'bundle.js'
     },
     
