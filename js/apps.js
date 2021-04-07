@@ -204,7 +204,7 @@ showFavorites();
 
 // REMOVE ALL ITEMS FROM LIST
 removeAll.addEventListener('click', () => {
- let msg = confirm("Are sure to delete all items in the list?");
+ let msg = confirm("Are you sure to delete all items in the list?");
  if(msg === true){
    localStorage.clear("favorites");
    let items = ("All items have been deleted");

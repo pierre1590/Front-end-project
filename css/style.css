@@ -185,7 +185,6 @@ ul.song-list li {
     width: 102px;
     height: 23px;
     border: 15%;
-    
 }
 
 
@@ -443,7 +442,7 @@ footer p{
         text-align: center;
         position: relative;
         max-width:100%;       
-        margin-left: 2%;
+        margin-left: 0;
         font-family: 'Pacifico', serif;
         font-size: 18px;
         color:#11f;
@@ -451,8 +450,8 @@ footer p{
 
     ul.song-list{
         list-style-type: none;
-        padding: 10px;
-        width: 300px;
+        padding: 5px;
+        width: 320px;
         
     }
 
@@ -491,6 +490,7 @@ footer p{
         top:58%;
         width: 100%;
         overflow-y: scroll;
+        height: 400px;
         
     }
 
