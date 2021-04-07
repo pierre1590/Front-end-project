@@ -104,6 +104,7 @@ h1{
     cursor: pointer;
     border-radius: 21px;
     box-shadow: 3px 3px 3px #037;
+    background-image: url(../img/reload.png);
 }
 
 
