@@ -415,7 +415,7 @@ footer p{
 
     #form{
         top:5%;
-        width:230px;
+        width:240px;
     }
 
     .search-box{
@@ -426,6 +426,10 @@ footer p{
         font-size: 15px;
         width:450px;
         height: 100px;
+    }
+
+    #search{
+        font-size:18px;
     }
 
     .reload{

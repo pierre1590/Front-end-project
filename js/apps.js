@@ -10,7 +10,6 @@ const removeAll = document.querySelector('.clear-all');
 const deleteItems = document.querySelector('.delete-items span');
 const favSongs = document.querySelector('.fav-list');
 const reload = document.querySelector('.reload');
-const removeSingleItem = D('.remove-item');
 
 
 // OPEN AND CLOSE FAVORITE LIST
@@ -152,7 +151,6 @@ if(data.hasOwnProperty("error")){
 
 //ADD SONG TO FAVOURITE LIST
 
-
 function addToList(artist, songTitle, songId)  {
   const favorites = getFavorites();
   if(favorites.some(fav => fav.songId == songId)){
@@ -229,5 +227,8 @@ function removeSingleFavorite(songId){
 
 }
 
-//ADD EVENT LISTENER REMOVE SINGLE ITEM
+window.addToList = addToList;
+window.getLyrics = getLyrics;
+window.removeSingleFavorite = removeSingleFavorite;
+window.getMoreSongs = getMoreSongs;
 
