@@ -91,7 +91,7 @@ function showData(data){
                       <strong>${song.artist.name}</strong> -${song.title} 
                     </span>
                     <div class="buttons">
-                      <button class="btn" onclick="getLyrics('${song.artist.name}', '${song.title}')">Get Lyrics</button>
+                      <button class="btn" onclick="getLyrics('${song.artist.name}',  '${song.title.replace(/'/g, "\\'")}')">Get Lyrics</button>
                         <audio id="music" controls="play/pause" id="music">
                             <source src="${song.preview}" type="audio/mpeg">
                         </audio> 
